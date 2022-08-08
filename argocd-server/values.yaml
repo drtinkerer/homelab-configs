@@ -71,11 +71,11 @@ argo-cd:
         type: git
         url: https://github.com/drtinkerer/homelab-configs.git
         insecure: "true"
-  
+
     - apiVersion: argoproj.io/v1alpha1
       kind: Application
       metadata:
-        name: argocd-applications
+        name: homelab-deployer
         namespace: argo-cd
       spec:
         destination:
