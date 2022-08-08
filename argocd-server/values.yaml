@@ -58,68 +58,52 @@ argo-cd:
   ## Ref: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles
   createAggregateRoles: true
 
-  # -- Array of extra K8s manifests to deploy
-  #extraObjects:
-  #  - apiVersion: v1
-  #    kind: Secret
-  #    metadata:
-  #      name: argocd-data-platform
-  #      namespace: argo-cd
-  #      labels:
-  #        argocd.argoproj.io/secret-type: repository
-  #    stringData:
-  #      type: git
-  #      url: https://gitlab.sboxdc.com/SugarBox/argocd-data-platform.git
-  #      password: tJfE_d6Z4f-q7AszjoSA
-  #      username: tJfE_d6Z4f-q7AszjoSA
-  #      insecure: "true"
-  #
-  #  - apiVersion: v1
-  #    kind: Secret
-  #    metadata:
-  #      name: analytics-iaac
-  #      namespace: argo-cd
-  #      labels:
-  #        argocd.argoproj.io/secret-type: repository
-  #    stringData:
-  #      type: git
-  #      url: https://gitlab.sboxdc.com/SugarBox/analytics-iaac.git
-  #      password: tJfE_d6Z4f-q7AszjoSA
-  #      username: tJfE_d6Z4f-q7AszjoSA
-  #      insecure: "true"
-  #
-  #  - apiVersion: argoproj.io/v1alpha1
-  #    kind: Application
-  #    metadata:
-  #      name: argocd-applications
-  #      namespace: argo-cd
-  #    spec:
-  #      destination:
-  #        name: ''
-  #        namespace: argo-cd
-  #        server: 'https://kubernetes.default.svc'
-  #      source:
-  #        path: argocd-applications
-  #        repoURL: 'https://gitlab.sboxdc.com/SugarBox/argocd-data-platform.git'
-  #        targetRevision: main
-  #        directory:
-  #          jsonnet:
-  #            tlas: []
-  #          recurse: true
-  #      project: default
-  #      syncPolicy:
-  #        automated:
-  #          prune: true
-  #          selfHeal: true
-  #        syncOptions:
-  #          - CreateNamespace=true
-  #        retry:
-  #          limit: 2
-  #          backoff:
-  #            duration: 5s
-  #            maxDuration: 3m0s
-  #            factor: 2
-  #
+   -- Array of extra K8s manifests to deploy
+  extraObjects:
+    - apiVersion: v1
+      kind: Secret
+      metadata:
+        name: argocd-data-platform
+        namespace: argo-cd
+        labels:
+          argocd.argoproj.io/secret-type: repository
+      stringData:
+        type: git
+        url: https://github.com/drtinkerer/homelab-configs.git
+        insecure: "true"
+  
+    - apiVersion: argoproj.io/v1alpha1
+      kind: Application
+      metadata:
+        name: argocd-applications
+        namespace: argo-cd
+      spec:
+        destination:
+          name: ''
+          namespace: argo-cd
+          server: 'https://kubernetes.default.svc'
+        source:
+          path: argocd-applications
+          repoURL: 'https://github.com/drtinkerer/homelab-configs.git'
+          targetRevision: main
+          directory:
+            jsonnet:
+              tlas: []
+            recurse: true
+        project: default
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: true
+          syncOptions:
+            - CreateNamespace=true
+          retry:
+            limit: 2
+            backoff:
+              duration: 5s
+              maxDuration: 3m0s
+              factor: 2
+  
     # - apiVersion: secrets-store.csi.x-k8s.io/v1
     #   kind: SecretProviderClass
     #   metadata:
@@ -1224,8 +1208,8 @@ argo-cd:
       #      connectors:
       #      - config:
       #          issuer: "https://accounts.google.com"
-      #          clientID: "595360531990-99at1c6de74fh1oe3kgctmdgsv7mcnl6.apps.googleusercontent.com"
-      #          clientSecret: "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"
+      #          clientID: "<id>"
+      #          clientSecret: "<id>"
       #        type: oidc
       #        id: google
       #        name: Google
