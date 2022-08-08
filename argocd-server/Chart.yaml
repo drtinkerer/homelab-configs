@@ -9,7 +9,7 @@ sources:
   - https://artifacthub.io/packages/helm/argo/argo-cd
 maintainers:
   - name: Bhushan Rane
-    email: bhushan.rane@sugarboxnetworks.com
+    email: eulersidentity2718@gmail.com
 dependencies:
   - name: argo-cd
     version: 4.6.0
