@@ -1,0 +1,17 @@
+apiVersion: "v2"
+name: argo-cd
+version: 1.0.0
+appVersion: v1.0.0
+description: "ArgoCD: Continuous Delivery for kubenetes workloads"
+home: https://argo-cd.readthedocs.io/en/stable/
+icon: https://redhat-scholars.github.io/argocd-tutorial/argocd-tutorial/_images/argocd-logo.png
+sources:
+  - https://artifacthub.io/packages/helm/argo/argo-cd
+maintainers:
+  - name: Bhushan Rane
+    email: bhushan.rane@sugarboxnetworks.com
+dependencies:
+  - name: argo-cd
+    version: 4.6.0
+    repository: https://argoproj.github.io/argo-helm
+
