@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-ingress
+spec:
+  destination:
+    name: ''
+    namespace: nginx-ingress
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: helm-deploy/nginx-ingress
+    repoURL: 'https://github.com/drtinkerer/homelab-configs.git'
+    targetRevision: main
+    helm:
+      valueFiles:
+        - values.yaml
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - Replace=true
