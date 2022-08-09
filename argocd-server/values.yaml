@@ -58,7 +58,7 @@ argo-cd:
   ## Ref: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles
   createAggregateRoles: true
 
-   -- Array of extra K8s manifests to deploy
+  # -- Array of extra K8s manifests to deploy
   extraObjects:
     - apiVersion: v1
       kind: Secret
@@ -1077,7 +1077,7 @@ argo-cd:
       ## Hostnames must be provided if Ingress is enabled.
       ## Secrets must be manually created in the namespace
       hosts:
-        - argocd.home.lab
+        - argocd.homelab.lan
         # - argocd.example.com
 
       # -- List of ingress paths
@@ -1200,7 +1200,7 @@ argo-cd:
     # @default -- See [values.yaml]
     config:
       # Argo CD's externally facing base URL (optional). Required when configuring SSO
-      url: "http://argocd.home.lab"
+      url: "http://argocd.homelab.lan"
       # Argo CD instance label key
       application.instanceLabelKey: argocd.argoproj.io/instance
       
