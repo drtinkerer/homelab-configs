@@ -75,7 +75,29 @@ apiVersionOverrides:
 createAggregateRoles: false
 
 # -- Array of extra K8s manifests to deploy
-extraObjects: []
+extraObjects:
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: homelab-deployer
+    spec:
+      destination:
+        name: ''
+        namespace: argo-cd
+        server: 'https://kubernetes.default.svc'
+      source:
+        path: helm-deploy
+        repoURL: 'https://github.com/drtinkerer/homelab-configs.git'
+        targetRevision: main
+        directory:
+          recurse: true
+      project: default
+      syncPolicy:
+        automated: null
+        syncOptions:
+          - CreateNamespace=true
+          - PrunePropagationPolicy=background
+
   # - apiVersion: secrets-store.csi.x-k8s.io/v1
   #   kind: SecretProviderClass
   #   metadata:
@@ -1247,6 +1269,12 @@ server:
     # exec.enabled indicates whether the UI exec feature is enabled. It is disabled by default.
     # Ref: https://argo-cd.readthedocs.io/en/latest/operator-manual/rbac/#exec-resource
     exec.enabled: "false"
+    resource.customizations: |
+      networking.k8s.io/Ingress:
+        health.lua: |
+          hs = {}
+          hs.status = "Healthy"
+          return hs
 
     # admin.enabled indicates whether the admin user is enabled. It is enabled by default.
     # https://argo-cd.readthedocs.io/en/latest/faq/#how-to-disable-admin-user
