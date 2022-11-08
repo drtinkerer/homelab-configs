@@ -86,7 +86,7 @@ extraObjects:
         namespace: argo-cd
         server: 'https://kubernetes.default.svc'
       source:
-        path: helm-deploy
+        path: argocd-applications
         repoURL: 'https://github.com/drtinkerer/homelab-configs.git'
         targetRevision: main
         directory:

@@ -1,2 +1,2 @@
 #!/bin/bash
-helm upgrade -f ./values.yaml argo-cd argo/argo-cd
+helm upgrade -f ./values.yaml argo-cd argo/argo-cd -n argo-cd
