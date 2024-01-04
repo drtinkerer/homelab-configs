@@ -998,7 +998,7 @@ spec:
             # hosts:
             #   - grafana.domain.com
             hosts:
-              - grafana.domain.com
+              - grafana.cloudpoet.in
 
             ## Path for grafana ingress
             path: /
