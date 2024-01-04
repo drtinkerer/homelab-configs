@@ -470,7 +470,7 @@ spec:
             labels: {}
             # -- Type of the external controller service.
             # Ref: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
-            type: LoadBalancer
+            type: NodePort
             # -- Pre-defined cluster internal IP address of the external controller service. Take care of collisions with existing services.
             # This value is immutable. Set once, it can not be changed without deleting and re-creating the service.
             # Ref: https://kubernetes.io/docs/concepts/services-networking/service/#choosing-your-own-ip-address
@@ -480,7 +480,7 @@ spec:
             externalIPs: []
             # -- Deprecated: Pre-defined IP address of the external controller service. Used by cloud providers to connect the resulting load balancer service to a pre-existing static IP.
             # Ref: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer
-            loadBalancerIP: "192.168.1.10"
+            loadBalancerIP: ""
             # -- Restrict access to the external controller service. Values must be CIDRs. Allows any source address by default.
             loadBalancerSourceRanges: []
             # -- Load balancer class of the external controller service. Used by cloud providers to select a load balancer implementation other than the cloud provider default.
