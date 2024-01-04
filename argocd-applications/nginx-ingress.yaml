@@ -463,7 +463,7 @@ spec:
             enabled: true
             external:
               # -- Enable the external controller service or not. Useful for internal-only deployments.
-              enabled: False
+              enabled: True
             # -- Annotations to be added to the external controller service. See `controller.service.internal.annotations` for annotations to be added to the internal controller service.
             annotations: {}
             # -- Labels to be added to both controller services.
@@ -488,7 +488,7 @@ spec:
             loadBalancerClass: ""
             # -- Enable node port allocation for the external controller service or not. Applies to type `LoadBalancer` only.
             # Ref: https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-nodeport-allocation
-            # allocateLoadBalancerNodePorts: true
+            allocateLoadBalancerNodePorts: true
 
             # -- External traffic policy of the external controller service. Set to "Local" to preserve source IP on providers supporting it.
             # Ref: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
