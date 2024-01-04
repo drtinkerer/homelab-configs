@@ -1066,7 +1066,7 @@ spec:
             # loadBalancerIP: ""
             loadBalancerSourceRanges: []
             servicePort: 80
-            type: ClusterIP
+            type: NodePort
           priorityClassName: ""
           # -- Labels to be added to the default backend resources
           labels: {}
