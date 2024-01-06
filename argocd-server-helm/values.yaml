@@ -551,7 +551,28 @@ configs:
 
 # -- Array of extra K8s manifests to deploy
 ## Note: Supports use of custom Helm templates
-extraObjects: []
+extraObjects:
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: homelab-deployer
+    spec:
+      destination:
+        name: ''
+        namespace: argo-cd
+        server: 'https://kubernetes.default.svc'
+      source:
+        path: argocd-applications
+        repoURL: 'https://github.com/drtinkerer/homelab-configs.git'
+        targetRevision: main
+        directory:
+          recurse: true
+      project: default
+      syncPolicy:
+        automated: null
+        syncOptions:
+          - CreateNamespace=true
+          - PrunePropagationPolicy=background
   # - apiVersion: secrets-store.csi.x-k8s.io/v1
   #   kind: SecretProviderClass
   #   metadata:
