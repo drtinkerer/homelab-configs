@@ -1,0 +1,19 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: lets-encrypt-issuer
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: eulersidentity2718@gmail.com
+    privateKeySecretRef:
+      name: godaddy-api-key-secret
+    solvers:
+    - dns01:
+        godaddy:
+          apiKeySecretRef:
+            name: godaddy-dns-secret
+            key: key
+          apiSecretKeySecretRef:
+            name: godaddy-dns-secret
+            key: secret
