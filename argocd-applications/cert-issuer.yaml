@@ -9,11 +9,16 @@ spec:
     privateKeySecretRef:
       name: godaddy-api-key-secret
     solvers:
-    - dns01:
-        godaddy:
-          apiKeySecretRef:
-            name: godaddy-dns-secret
-            key: key
-          apiSecretKeySecretRef:
-            name: godaddy-dns-secret
-            key: secret
+    - selector:
+        dnsNames:
+        - '*.cloudpoet.in'
+      dns01:
+        webhook:
+          config:
+            apiKeySecretRef:
+              name: godaddy-api-key
+              key: token
+            production: true
+            ttl: 600
+          solverName: godaddy
+
