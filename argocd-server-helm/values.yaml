@@ -534,7 +534,7 @@ configs:
     # -- Bcrypt hashed admin password
     ## Argo expects the password in the secret to be bcrypt hashed. You can create this hash with
     ## `htpasswd -nbBC 10 "" $ARGO_PWD | tr -d ':\n' | sed 's/$2y/$2a/'`
-    argocdServerAdminPassword: ""
+    argocdServerAdminPassword: "bhadmin"
     # -- Admin password modification time. Eg. `"2006-01-02T15:04:05Z"`
     # @default -- `""` (defaults to current time)
     argocdServerAdminPasswordMtime: ""
@@ -1947,7 +1947,7 @@ server:
 
   ingress:
     # -- Enable an ingress resource for the Argo CD server
-    enabled: true
+    enabled: false
     # -- Additional ingress annotations
     annotations: {}
     # -- Additional ingress labels
